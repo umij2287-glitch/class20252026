@@ -11,8 +11,8 @@
 <head>
 	<meta charset="utf-8" />
 	<title>글상세보기</title>
-	<link rel="Stylesheet" href="/springdemoweb/resources/styles/default.css" />
-	<link rel="Stylesheet" href="/springdemoweb/resources/styles/input2.css" />
+	<link rel="Stylesheet" href="/springdemoweb2/resources/styles/default.css" />
+	<link rel="Stylesheet" href="/springdemoweb2/resources/styles/input2.css" />
 </head>
 <body>
 
@@ -49,7 +49,7 @@
 		                <th>첨부파일</th>
 		                <td>
 		                	<c:forEach var="attachment" items="${ board.attachments }">
-			                	<a href="/springdemoweb/board/download/${ attachment.attachNo }">
+			                	<a href="/springdemoweb2/board/download/${ attachment.attachNo }">
 			                		${ attachment.userFileName }
 			                	</a>
 		                	<br>
@@ -86,7 +86,7 @@
 $( () => {
 
 	$("#tolist_button").on("click", (e) => {
-		location.href = "/springdemoweb/board/list?pageNo=${ pageNo }";
+		location.href = "/springdemoweb2/board/list?pageNo=${ pageNo }";
 	})
 	
 	$("#delete_button").on("click", (e) => {
@@ -97,14 +97,14 @@ $( () => {
 			return;
 		}
 		
-    	//location.href = "/springdemoweb/board/delete?boardNo=${board.boardNo}?pageNo=${pageNo}"
-		location.href = "/springdemoweb/board/delete/${board.boardNo}?pageNo=${pageNo}";
+    	//location.href = "/springdemoweb2/board/delete?boardNo=${board.boardNo}?pageNo=${pageNo}"
+		location.href = "/springdemoweb2/board/delete/${board.boardNo}?pageNo=${pageNo}";
    	})
    	
    	$("#edit_button").on("click", (e) => {
 		
-    	//location.href = "/springdemoweb/board/edit?boardNo=${board.boardNo}?pageNo=${pageNo}"
-		location.href = "/springdemoweb/board/edit/${board.boardNo}?pageNo=${pageNo}";
+    	//location.href = "/springdemoweb2/board/edit?boardNo=${board.boardNo}?pageNo=${pageNo}"
+		location.href = "/springdemoweb2/board/edit/${board.boardNo}?pageNo=${pageNo}";
    	})
 
 })
