@@ -28,7 +28,7 @@ public class DataSourceMemberDao implements MemberDao {
 		
 		try {
 			
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			// Class.forName("com.mysql.cj.jdbc.Driver"); -> 필요없어짐.
 			conn = dataSource.getConnection(); // 커넥션 풀(CP)에서 빌려옴.
 			
 			String sql = "insert into tbl_member (memberid, passwd, email) values (?, ?, ?)";
@@ -61,6 +61,7 @@ public class DataSourceMemberDao implements MemberDao {
 		try {
 			
 			connection = dataSource.getConnection();
+			
 			String sql = "select * from tbl_member where memberid = ? and passwd = ?";
 			statement = connection.prepareStatement(sql);
 			

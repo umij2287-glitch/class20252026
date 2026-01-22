@@ -20,7 +20,8 @@ import jakarta.servlet.http.HttpSession;
 public class AuthController {
 	
 	@Autowired // IoC Container 가 자동으로 MemberDao 호환 타입 객체를 주입. 
-	@Qualifier("dataSourceMemberDao") // memberDao 로 등록된 객체로 한정.
+	//@Qualifier("dataSourceMemberDao") // memberDao 로 등록된 객체로 한정.
+	@Qualifier("jdbcTemplateMemberDao") // jdbcTemplateMemberDao 로 등록된 객체로 한정
 	private MemberDao dao;
 	
 	@GetMapping(path = {"/account/login"})

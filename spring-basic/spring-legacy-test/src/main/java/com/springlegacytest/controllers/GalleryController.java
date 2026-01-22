@@ -1,0 +1,13 @@
+package com.springlegacytest.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class GalleryController {
+
+	@GetMapping(path = {"/gallery"})
+	public String galleryScreen() {
+		return "gallery/image-gallery";
+	}
+}
