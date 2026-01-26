@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,12 +39,14 @@
 
             <p class="text-muted"><fmt:formatDate value="${ todo.writeDate }"/></p>
 
+<c:set var="enter" value="
+" />
             <p class="mt-3">
-                ${ todo.content }
+                ${ fn:replace (todo.content, enter, "<br/>") }
             </p>
    			<c:choose>
          		<c:when test="${ todo.completed }">
-          			<span class="badge bg-warning text-dark">완료</span>
+          			<span class="badge bg-success text-dark">완료</span>
              	</c:when>
              	<c:otherwise>
              		<span class="badge bg-warning text-dark">진행중</span>
@@ -53,11 +56,24 @@
     </div>
 
     <div class="mt-4 text-end">
-        <a href="/spring-legacy-test/todo/list" class="btn btn-secondary">목록</a>
-        <a href="/spring-legacy-test/todo/edit/${ todo.idx }" class="btn btn-primary">수정</a>
+        <a href="/spring-legacy-test/todo/list" class="btn btn-outline-secondary">목록</a>
+        <a href="/spring-legacy-test/todo/edit/${ todo.idx }" class="btn btn-outline-primary">수정</a>
+        <button id="delete-post" type="button" class="btn btn-outline-danger">삭제</button>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$( () => {
+    $("#delete-post").on("click", (e) => {
+		e.preventDefault();
+        const confirmation = confirm("삭제하시겠습니?");
+        if(!confirmation){
+            return;
+        }
+        location.href = "/spring-legacy-test/todo/delete/${ todo.idx }";
+    });
+});
+</script>
 </body>
 </html>
     

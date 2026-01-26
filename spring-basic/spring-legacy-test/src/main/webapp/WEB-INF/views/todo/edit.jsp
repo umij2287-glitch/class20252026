@@ -45,7 +45,9 @@
         <div class="mb-4">
             <label class="form-label">상태</label>
             <select name="completed" class="form-select">
-            	 
+            	 <option value="false" ${ not todo.completed ? "selected" : "" }>진행중</option>
+                 <option value="true" ${ todo.completed ? "selected" : "" }>완료</option>
+            	 <!-- 
             	<c:choose>
             		<c:when test="${ todo.completed }">
             			<option value="true" selected>완료</option>
@@ -56,7 +58,7 @@
                 		<option value="false" selected>진행중</option>
                 	</c:otherwise>
                 </c:choose>	
-                
+                 -->
             </select>
         </div>
 

@@ -75,7 +75,7 @@
 	                <td>
 	                	<c:choose>
                     		<c:when test="${ todo.completed }">
-	                    		<span class="badge bg-warning text-dark">완료</span>
+	                    		<span class="badge bg-success text-dark">완료</span>
                         	</c:when>
                         	<c:otherwise>
                         		<span class="badge bg-warning text-dark">진행중</span>

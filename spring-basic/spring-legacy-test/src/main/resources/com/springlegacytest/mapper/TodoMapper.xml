@@ -20,5 +20,9 @@
     <update id="editDetail" parameterType="com.springlegacytest.dto.TodoDto">
         update todolist set title = #{title}, content = #{content}, completed = #{completed} where idx = #{idx};
     </update>
+    
+    <delete id="deleteTodo" parameterType="int">
+        delete from todolist where idx = #{idx};
+    </delete>
 </mapper>
 

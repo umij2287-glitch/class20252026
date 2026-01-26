@@ -58,6 +58,13 @@ public class TodoController {
 	public String todoEdit(@PathVariable("idx") int idx, 
 						   @ModelAttribute TodoDto todo) {
 		todoMapper.editDetail(todo);
+		return "redirect:/todo/detail/" + idx;
+	}
+	
+	@GetMapping(path = {"/todo/delete/{idx}"})
+	public String todoDelete(@PathVariable("idx") int idx) {
+		todoMapper.deleteTodo(idx);
 		return "redirect:/todo/list";
 	}
+	
 }
