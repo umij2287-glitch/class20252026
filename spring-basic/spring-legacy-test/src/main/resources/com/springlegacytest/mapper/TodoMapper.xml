@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 패키지이름.클래스이름 -->
+<mapper namespace="com.springlegacytest.mapper.TodoMapper">
+	
+	<insert id="addTodo" parameterType="com.springlegacytest.dto.TodoDto">
+		insert into todolist (title, content, completed) values(#{title}, #{content}, #{completed});
+	</insert>
+	
+	<select id="viewTodo" resultType="com.springlegacytest.dto.TodoDto">
+		select * from todolist order by completed asc, writedate desc;
+	</select>
+	
+	<select id="viewDetail" parameterType="int" resultType="com.springlegacytest.dto.TodoDto">
+        select * from todolist where idx = #{idx};
+    </select>
+    
+    <update id="editDetail" parameterType="com.springlegacytest.dto.TodoDto">
+        update todolist set title = #{title}, content = #{content}, completed = #{completed} where idx = #{idx};
+    </update>
+</mapper>
+
