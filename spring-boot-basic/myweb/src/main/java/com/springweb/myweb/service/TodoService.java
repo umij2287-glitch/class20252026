@@ -9,6 +9,12 @@ public interface TodoService {
 
 	void writeTodo(TodoDto todo);
 
-	List<TodoEntity> viewTodo();
+	List<TodoDto> viewTodo();
+
+	TodoDto viewDetail(int idx);
+
+	void deleteTodo(int idx);
+
+	void updateTodo(TodoDto todo);
 
 }

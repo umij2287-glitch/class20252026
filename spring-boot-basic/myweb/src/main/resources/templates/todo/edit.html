@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>TODO 수정</title>
@@ -21,35 +21,39 @@
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="todo-list.html">TODO 관리</a>
+        <a class="navbar-brand" href="/todo/list">TODO 관리</a>
+        <a class="navbar-brand" href="/home">HOME</a>
+        <div class="navbar-nav">
+				<a class="nav-link" href="/todo/write">TODO 등록</a>
+	   </div>
     </div>
 </nav>
 
 <div class="container mt-5">
     <h2 class="mb-4">TODO 수정</h2>
-
-    <form>
+    <form action="edit" method="post">
+   	   <input type="hidden" name="idx" th:value="${todo.idx}"/>
         <div class="mb-3">
             <label class="form-label">제목</label>
-            <input type="text" class="form-control" value="Spring MVC TODO 만들기">
+            <input type="text" class="form-control" name="title" th:value="${todo.title}"/>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">내용</label>
-            <textarea class="form-control" rows="5">Spring MVC 기반의 레거시 TODO 웹 애플리케이션을 구현한다.</textarea>
+            <label class="form-label" >내용</label>
+            <textarea class="form-control" rows="5" name="content" th:text="${todo.content}"></textarea>
         </div>
 
         <div class="mb-4">
             <label class="form-label">상태</label>
-            <select class="form-select">
-                <option selected>진행중</option>
-                <option>완료</option>
+            <select name="completed" class="form-select">
+                <option value="true" th:selected="${todo.completed ? true : false}">완료</option>
+                <option value="false" th:selected="${todo.completed ? false : true}" >진행중</option>
             </select>
         </div>
 
         <div class="text-end">
-            <a href="detail.html" class="btn btn-secondary">취소</a>
-            <button type="submit" class="btn btn-primary">수정</button>
+            <a th:href="@{/todo/detail/{idx}(idx=${todo.idx})}" class="btn btn-secondary">취소</a>
+            <button type="submit" class="btn btn-primary">수정 완료</button>
         </div>
     </form>
 </div>
