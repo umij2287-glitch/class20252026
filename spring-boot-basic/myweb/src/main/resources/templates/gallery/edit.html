@@ -16,29 +16,29 @@
 <body>
     <nav class="navbar navbar-dark nav-custom shadow-sm">
         <div class="container mt-0 mb-0" style="max-width: 800px;">
-            <a class="navbar-brand fw-bold" href="list_image.html">📸 IMAGE GALLERY</a>
+            <a class="navbar-brand fw-bold" href="/gallery/list">📸 IMAGE GALLERY</a>
         </div>
     </nav>
 
     <div class="container main-container">
         <div class="card shadow p-4">
             <h3 class="fw-bold mb-4 text-warning">이미지 정보 수정</h3>
-            <form>
+            <form th:action="@{/gallery/edit/{idx}(idx=${galleryDto.idx})}" method="post" enctype="multipart/form-data">
                 <div class="mb-3 text-center bg-light p-3 border rounded">
                     <p class="small text-muted mb-1">현재 이미지</p>
-                    <img src="https://via.placeholder.com/100" class="preview-img border" alt="미리보기">
-                    <input type="file" class="form-control">
+                    <img th:src="@{/uploaded/{name}(name=${galleryDto.savedFileName})}" class="preview-img border" alt="미리보기">
+                    <input name="picture" type="file" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">제목 수정</label>
-                    <input type="text" class="form-control" value="풍경 사진 01">
+                    <input th:name="title" type="text" class="form-control" th:value="${galleryDto.title}">
                 </div>
                 <div class="mb-4">
                     <label class="form-label fw-bold">내용 수정</label>
-                    <textarea class="form-control" rows="5">기존 설명이 로드된 상태입니다.</textarea>
+                    <textarea class="form-control" rows="5" th:name="description"  th:text="${galleryDto.description}"></textarea>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <a href="detail_image.html" class="btn btn-secondary px-4">취소</a>
+                    <a th:href="@{/gallery/detail/{idx}(idx=${galleryDto.idx})}" class="btn btn-secondary px-4">취소</a>
                     <button type="submit" class="btn btn-warning px-4 fw-bold">수정 완료</button>
                 </div>
             </form>

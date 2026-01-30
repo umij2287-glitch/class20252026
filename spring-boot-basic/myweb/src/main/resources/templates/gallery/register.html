@@ -24,19 +24,22 @@
     <div class="container main-container text-center">
         <div class="card shadow p-4 text-start">
             <h3 class="fw-bold mb-4">새 이미지 등록</h3>
-            <form>
+            <form action="register" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label fw-bold">제목</label>
                     <input name="title" type="text" class="form-control" placeholder="이미지 제목을 입력하세요">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">파일 선택</label>
-                    <input type="file" accept="image/png, image/gif, image/jpeg, image/jpg" class="form-control">
+                    <input id="picture" name="picture" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" class="form-control">
                     <!-- <input type="file" accept="image/*" class="form-control"> -->
+                </div>
+                <div id="image-container" class="mb-3" style="height:200px">
+                	<img id="preview" class="h-100">
                 </div>
                 <div class="mb-4">
                     <label class="form-label fw-bold">설명</label>
-                    <textarea name="content" class="form-control" rows="5" placeholder="내용을 입력하세요"></textarea>
+                    <textarea name="description" class="form-control" rows="5" placeholder="내용을 입력하세요"></textarea>
                 </div>
                 <div class="d-flex justify-content-between">
                     <a href="list" class="btn btn-secondary px-4">취소</a>
@@ -45,5 +48,26 @@
             </form>
         </div>
     </div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(()=>{
+
+	 const input = $("#picture");
+	 const preview = $("#preview");
+	
+	 input.on("change", function (event) {
+	    const file = event.target.files[0];
+	    if (!file) return;
+	    const reader = new FileReader();
+	    reader.onload = function (e) {
+	      preview.attr('src', e.target.result);
+	      // preview.css('display', 'block');
+	    };
+	    reader.readAsDataURL(file);
+ });
+	
+})
+
+</script>
 </body>
 </html>

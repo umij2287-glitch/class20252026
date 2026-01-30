@@ -1,6 +1,7 @@
 -- SQL의 주석
 
--- 1. 사용자 계정 만들기 (DCL : data control language)
+-- 1. 사용자 계정 만들기 (DCL : data control language) 
+-- dcl? -> 권한 부여. 사용자 생성
 -- 형식 : 사용자명@접속하는 컴퓨터의 IP
 
 CREATE USER human@localhost IDENTIFIED BY "human";

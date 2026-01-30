@@ -27,13 +27,17 @@
         <h3 class="fw-bold mb-4">전체 이미지 목록</h3>
         <hr>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
+            <div th:each="image:${galleryList}" class="col">
                 <div class="card shadow-sm h-100">
-                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="...">
+                	<a th:href="@{detail/{idx}(idx=${image.idx})}" >
+	                	<div class="ratio ratio-16x9">
+		                	<img th:src="@{/uploaded/{name}(name=${image.savedFileName})}" 
+		                    	class="card-img-top" th:alt="${image.originalFileName}">
+	                	</div>
+	                </a>	
                     <div class="card-body">
-                        <h5 class="fw-bold">풍경 사진 01</h5>
-                        <p class="text-muted small">이미지에 대한 간단한 설명입니다.</p>
-                        <a href="detail_image.html" class="btn btn-outline-primary btn-sm w-100">상세보기</a>
+                        <h5 class="fw-bold" th:text="${image.title}"></h5>
+                        <a th:href="@{detail/{idx}(idx=${image.idx})}" class="btn btn-outline-primary btn-sm w-100">상세보기</a>
                     </div>
                 </div>
             </div>
